@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-12 Teacher Resource Hubs - All Content Areas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Nunito', sans-serif; 
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); 
+            min-height: 100vh; 
+            padding: 40px 20px; 
+            line-height: 1.6; 
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        h1 { 
+            color: white; 
+            font-size: 3.2em; 
+            margin-bottom: 15px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #f093fb, #f5576c, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle { 
+            color: #a0aec0; 
+            font-size: 1.4em; 
+            margin-bottom: 10px;
+        }
+        
+        .author {
+            color: #718096;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        
+        .intro-text {
+            color: #cbd5e0;
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+            line-height: 1.8;
+        }
+        
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 40px 0;
+        }
+        
+        .feature {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .feature:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-3px);
+        }
+        
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .feature-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+        
+        .feature-text {
+            color: #a0aec0;
+            font-size: 0.85em;
+        }
+        
+        /* Content Areas Grid */
+        .content-areas-title {
+            color: white;
+            font-size: 1.8em;
+            margin: 50px 0 30px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px 30px;
+            text-decoration: none;
+            color: #2d3436;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        
+        /* Content Area Specific Colors */
+        .math-card::before { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .math-card .card-icon { color: #667eea; }
+        .math-card .card-stats { background: linear-gradient(135deg, #667eea, #764ba2); }
+        
+        .science-card::before { background: linear-gradient(135deg, #11998e, #38ef7d); }
+        .science-card .card-icon { color: #11998e; }
+        .science-card .card-stats { background: linear-gradient(135deg, #11998e, #38ef7d); }
+        
+        .ela-card::before { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .ela-card .card-icon { color: #e84393; }
+        .ela-card .card-stats { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        
+        .ss-card::before { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .ss-card .card-icon { color: #0984e3; }
+        .ss-card .card-stats { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        
+        .card-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+        
+        .card-title {
+            font-size: 1.6em;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        
+        .card-description {
+            color: #666;
+            font-size: 1em;
+            flex-grow: 1;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .card-stats {
+            display: inline-block;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .card-grades {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .card-arrow {
+            text-align: right;
+            color: #a0aec0;
+            font-size: 1.8em;
+            margin-top: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .content-card:hover .card-arrow {
+            transform: translateX(5px);
+        }
+        
+        /* What's Included Section */
+        .included-section {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 50px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .included-title {
+            color: white;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .included-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .included-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cbd5e0;
+            font-size: 0.95em;
+        }
+        
+        .included-item span {
+            font-size: 1.3em;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            color: #718096;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #2d3748;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        footer a {
+            color: #a0aec0;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2em; }
+            .subtitle { font-size: 1.1em; }
+            .content-card { padding: 25px 20px; }
+            .card-icon { font-size: 2.5em; }
+            .card-title { font-size: 1.3em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 K-12 Teacher Resource Hubs</h1>
+            <p class="subtitle">Comprehensive Teaching Resources for Every Content Area</p>
+            <p class="author">Georgia Gwinnett College • Educator Preparation Program</p>
+            <p class="intro-text">
+                Access standards-aligned lesson plans, activities, assessments, and AI-integrated resources 
+                across all core content areas. Each hub provides everything you need to support effective 
+                instruction from Kindergarten through AP courses.
+            </p>
+        </header>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">📋</div>
+                <div class="feature-title">Standards-Aligned</div>
+                <div class="feature-text">GSE, NGSS, CCSS & Gwinnett AKS</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📚</div>
+                <div class="feature-title">Complete Lessons</div>
+                <div class="feature-text">Ready-to-use plans</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🤖</div>
+                <div class="feature-title">AI Integration</div>
+                <div class="feature-text">Tools for teachers & students</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌟</div>
+                <div class="feature-title">Differentiation</div>
+                <div class="feature-text">All learners supported</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌍</div>
+                <div class="feature-title">Cultural Connections</div>
+                <div class="feature-text">Diverse perspectives</div>
+            </div>
+        </div>
+        
+        <h2 class="content-areas-title">📖 Content Area Resource Hubs</h2>
+        
+        <div class="content-grid">
+            <!-- Math Card -->
+            <a href="math-hub-index.html" class="content-card math-card">
+                <div class="card-icon">📐</div>
+                <div class="card-title">Mathematics</div>
+                <div class="card-stats">17 Resource Hubs</div>
+                <div class="card-description">
+                    From counting and cardinality through AP Calculus. Includes manipulatives, 
+                    visual models, problem-solving strategies, and real-world applications.
+                </div>
+                <div class="card-grades">K-5 • Grades 6-8 • Algebra • Geometry • Pre-Calc • AP</div>
+                <div class="card-arrow">→</div>
+            </a>
+            
+            <!-- Science Card -->
+            <a href="science-hub-index.html" class="content-card science-card">
+                <div class="card-icon">🔬</div>
+                <div class="card-title">Science</div>
+                <div class="card-stats">17 Resource Hubs</div>
+                <div class="card-description">
+                    NGSS-aligned resources covering life science, physical science, Earth science, 
+                    and engineering. Hands-on labs, CER frameworks, and phenomenon-based learning.
+                </div>
+                <div class="card-grades">K-5 • Life Science • Physical Science • Biology • Chemistry • Physics • AP</div>
+                <div class="card-arrow">→</div>
+            </a>
+            
+            <!-- ELA Card -->
+            <a href="ela-hub-index.html" class="content-card ela-card">
+                <div class="card-icon">📚</div>
+                <div class="card-title">English Language Arts</div>
+                <div class="card-stats">17 Resource Hubs</div>
+                <div class="card-description">
+                    Comprehensive literacy resources for reading, writing, speaking, and listening. 
+                    Includes mentor texts, writing workshops, and literature analysis tools.
+                </div>
+                <div class="card-grades">K-5 • Grades 6-8 • English I-IV • AP Language • AP Literature</div>
+                <div class="card-arrow">→</div>
+            </a>
+            
+            <!-- Social Studies Card -->
+            <a href="social-studies-hub-index.html" class="content-card ss-card">
+                <div class="card-icon">🌎</div>
+                <div class="card-title">Social Studies</div>
+                <div class="card-stats">17 Resource Hubs</div>
+                <div class="card-description">
+                    History, geography, civics, and economics resources with primary sources, 
+                    inquiry-based activities, and diverse historical perspectives.
+                </div>
+                <div class="card-grades">K-5 • World History • US History • Government • Economics • AP</div>
+                <div class="card-arrow">→</div>
+            </a>
+        </div>
+        
+        <div class="included-section">
+            <h3 class="included-title">📦 What's Included in Each Resource Hub</h3>
+            <div class="included-grid">
+                <div class="included-item"><span>📋</span> Standards Alignment</div>
+                <div class="included-item"><span>👩‍🏫</span> Teacher Background</div>
+                <div class="included-item"><span>🧮</span> Manipulatives & Tools</div>
+                <div class="included-item"><span>📚</span> Complete Lessons</div>
+                <div class="included-item"><span>🔬</span> Labs & Investigations</div>
+                <div class="included-item"><span>🎬</span> Videos & Media</div>
+                <div class="included-item"><span>📖</span> Articles & Readings</div>
+                <div class="included-item"><span>📝</span> Assessments</div>
+                <div class="included-item"><span>🖨️</span> Printables</div>
+                <div class="included-item"><span>📖</span> Vocabulary</div>
+                <div class="included-item"><span>🎮</span> Games & Activities</div>
+                <div class="included-item"><span>🌟</span> Differentiation Strategies</div>
+                <div class="included-item"><span>❓</span> Common Misconceptions</div>
+                <div class="included-item"><span>🌍</span> Cultural Connections</div>
+                <div class="included-item"><span>🤖</span> AI for Teachers</div>
+                <div class="included-item"><span>🧒</span> AI for Students</div>
+            </div>
+        </div>
+        
+        <footer>
+            <p><strong>68+ Resource Hubs</strong> covering K-12 and AP courses across all core content areas</p>
+            <p>Designed to support pre-service and in-service teachers with comprehensive, standards-aligned resources</p>
+            <p style="margin-top: 30px; color: #4a5568;">© 2024 Georgia Gwinnett College • Educator Preparation Program</p>
+        </footer>
+    </div>
+</body>
+</html>
